@@ -1,0 +1,104 @@
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../useAuth";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import "./Login.css";
+import axios from 'axios';
+
+function Login() {
+  const [inputId, setInputId] = useState("");
+  const [inputPw, setInputPw] = useState("");
+
+  // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
+  const handleInputId = (e) => {
+    setInputId(e.target.value);
+  };
+  const handleInputPw = (e) => {
+    setInputPw(e.target.value);
+  };
+
+  // login 버튼 클릭 이벤트
+  const checkLogin = () => {
+    console.log(inputId);
+    console.log(inputPw);
+    axios.post("/login",{
+        id:inputId,
+        pw:inputPw
+    },
+    {withCredentials:true})
+    .then((response) => {console.log(response);})
+    .catch((error) => {console.log("Err");})
+
+  };
+  // 페이지 렌더링 후 가장 처음 호출되는 함수
+  useEffect(
+    () => {
+      // id pw to server
+      checkLogin();
+    },
+    // 페이지 호출 후 처음 한번만 호출될 수 있도록 [] 추가
+    []
+  );
+  let navigate = useNavigate();
+  let location = useLocation();
+  let auth = useAuth();
+
+  let from = location.state?.from?.pathname || "/main";
+
+  function handleLoginSubmit(event) {
+    event.preventDefault();
+
+    let formData = new FormData(event.currentTarget);
+    let username = formData.get("username");
+
+    auth.signin(username, () => {
+      // Send them back to the page they tried to visit when they were
+      // redirected to the login page. Use { replace: true } so we don't create
+      // another entry in the history stack for the login page.  This means that
+      // when they get to the protected page and click the back button, they
+      // won't end up back on the login page, which is also really nice for the
+      // user experience.
+      navigate(from, { replace: true });
+    });
+  }
+  return (
+    <div className="loginBox">
+      <Card className="text-center" bg="dark" text="white">
+        <Card.Header>HN Inc</Card.Header>
+        <Card.Body>
+          <Card.Title>Available after signin</Card.Title>
+          <Card.Text>
+          <form onSubmit={handleLoginSubmit}>
+        <div>
+          <input
+            type="text"
+            name="username"
+            value={inputId}
+            onChange={handleInputId}
+            placeholder="ID"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            name="input_pw"
+            value={inputPw}
+            onChange={handleInputPw}
+            placeholder="PW"
+          />
+        </div>
+          <Button className="loginBtn" variant="light"type="submit" onClick={checkLogin}>
+            Login
+          </Button>
+      </form>
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer className="text-muted">Copyright 2022. HN Inc all rights reserved.</Card.Footer>
+      </Card>
+
+    </div>
+  );
+}
+
+export default Login;

@@ -1,0 +1,10 @@
+.sideMenu{
+    list-style: none;
+    padding-left: 0;
+}
+.menuTitle{
+    text-decoration: none;
+    color:black;
+    font-weight: 500;
+    font-size: large;
+}

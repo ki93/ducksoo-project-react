@@ -1,0 +1,12 @@
+.loginBox{
+    margin:auto;
+    height: 100vh;
+    position: relative;
+    width: 30%;
+}
+.text-center{
+    top:30%;
+}
+.loginBtn{
+    margin-top: 10px;
+}
