@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@bryntum/demo-resources": "^1.1.0",
-    "@bryntum/gantt": "npm:@bryntum/gantt-trial@^5.0.1",
-    "@bryntum/gantt-react": "^5.0.1",
     "@dhtmlx/trial-react-gantt": "^1.1.4",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",

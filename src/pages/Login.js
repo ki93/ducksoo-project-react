@@ -3,8 +3,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../useAuth";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
+import Ducksoo from "../image/ducksooLogo.png"
 import "./Login.css";
-import axios from 'axios';
+import axios from "axios";
 
 function Login() {
   const [inputId, setInputId] = useState("");
@@ -22,14 +25,21 @@ function Login() {
   const checkLogin = () => {
     console.log(inputId);
     console.log(inputPw);
-    axios.post("/login",{
-        id:inputId,
-        pw:inputPw
-    },
-    {withCredentials:true})
-    .then((response) => {console.log(response);})
-    .catch((error) => {console.log("Err");})
-
+    axios
+      .post(
+        "/login",
+        {
+          id: inputId,
+          pw: inputPw,
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log("Err");
+      });
   };
   // 페이지 렌더링 후 가장 처음 호출되는 함수
   useEffect(
@@ -63,40 +73,58 @@ function Login() {
     });
   }
   return (
-    <div className="loginBox">
-      <Card className="text-center" bg="dark" text="white">
-        <Card.Header>HN Inc</Card.Header>
-        <Card.Body>
-          <Card.Title>Available after signin</Card.Title>
-          <Card.Text>
-          <form onSubmit={handleLoginSubmit}>
-        <div>
-          <input
-            type="text"
-            name="username"
-            value={inputId}
-            onChange={handleInputId}
-            placeholder="ID"
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            name="input_pw"
-            value={inputPw}
-            onChange={handleInputPw}
-            placeholder="PW"
-          />
-        </div>
-          <Button className="loginBtn" variant="light"type="submit" onClick={checkLogin}>
-            Login
-          </Button>
-      </form>
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer className="text-muted">Copyright 2022. HN Inc all rights reserved.</Card.Footer>
-      </Card>
+    <div className="loginpage">
+      <div className="loginBox">
+        <Card className="text-center" bg="dark" text="light">
+          <Card.Body className="loginCardBody">
+            <div className="loginContent">
+              <div className="loginContentLogo">
+                {/* <p className="loginHnText">Hn Inc</p> */}
+                <img
+                  src={Ducksoo}
+                  className="img-fluid"
+                  className="loginContentLogoImg"
+                  alt="..."
+                  style={{ maxWidth: "24rem" }}
+                />{" "}
+              </div>
+              <div className="loginContentForm">
+                <Form onSubmit={handleLoginSubmit} className="loginFormInput">
+                  {/* <Card.Title>Please Login</Card.Title> */}
 
+                  <Form.Control
+                    type="text"
+                    name="username"
+                    value={inputId}
+                    onChange={handleInputId}
+                    placeholder="ID"
+                    className="inputLoginInfo"
+                  />
+                  <Form.Control
+                    type="password"
+                    name="input_pw"
+                    value={inputPw}
+                    onChange={handleInputPw}
+                    placeholder="PW"
+                    className="inputLoginInfo"
+                  />
+                  <Button
+                    className="loginBtn"
+                    variant="outline-secondary"
+                    type="submit"
+                    onClick={checkLogin}
+                  >
+                    Login
+                  </Button>
+                </Form>
+              </div>
+            </div>
+          </Card.Body>
+          <Card.Footer className="text-muted" className="loginFormFooter">
+            Copyright 2022. HN Inc all rights reserved.
+          </Card.Footer>
+        </Card>
+      </div>
     </div>
   );
 }
