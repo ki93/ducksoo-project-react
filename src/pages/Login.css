@@ -37,9 +37,10 @@
 .loginFormInput{
     width: 65%;
     margin: auto;
-    height: 100%;
     position: relative;
-    top: 35%;
+    top: 20%;
+    padding: 20px;
+    border: 1px solid;
 }
 .loginCardBody, .loginFormFooter{
     overflow: hidden;
@@ -55,4 +56,10 @@
 .loginContentLogoImg{
     position: relative;
     top: 35%;
+}
+.loiginFormLabel{
+    float: left;
+}
+.createAccountBtn{
+    float: right;
 }

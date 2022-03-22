@@ -75,7 +75,7 @@ function Login() {
   return (
     <div className="loginpage">
       <div className="loginBox">
-        <Card className="text-center" bg="dark" text="light">
+        <Card className="text-center" bg="#00000" text="dark" border="secondary"> 
           <Card.Body className="loginCardBody">
             <div className="loginContent">
               <div className="loginContentLogo">
@@ -89,9 +89,12 @@ function Login() {
                 />{" "}
               </div>
               <div className="loginContentForm">
+                <div className="createAccountBtn">
+                  Create Account
+                </div>
                 <Form onSubmit={handleLoginSubmit} className="loginFormInput">
                   {/* <Card.Title>Please Login</Card.Title> */}
-
+                  <Form.Label className="loiginFormLabel" >ID</Form.Label>
                   <Form.Control
                     type="text"
                     name="username"
@@ -100,6 +103,7 @@ function Login() {
                     placeholder="ID"
                     className="inputLoginInfo"
                   />
+                  <Form.Label className="loiginFormLabel" >Password</Form.Label>
                   <Form.Control
                     type="password"
                     name="input_pw"
@@ -121,7 +125,7 @@ function Login() {
             </div>
           </Card.Body>
           <Card.Footer className="text-muted" className="loginFormFooter">
-            Copyright 2022. HN Inc all rights reserved.
+            Copyright 2022. HN Inc All Rights Reserved.
           </Card.Footer>
         </Card>
       </div>
