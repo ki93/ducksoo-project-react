@@ -1,12 +1,65 @@
+.loginpage{
+    margin:auto;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+    background: rgb(245, 244, 244);
+}
 .loginBox{
     margin:auto;
     height: 100vh;
     position: relative;
-    width: 30%;
+    width: 55%;
 }
 .text-center{
-    top:30%;
+    top:20%;
+    height: 50vh;
 }
 .loginBtn{
-    margin-top: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+.loginContent{
+    width: 100%;
+    height: 100%;
+}
+.loginContentLogo{
+    float: left;
+    width: 35%;
+    height: 100%;
+}
+.loginContentForm{
+    float: right;
+    width: 65%;
+    height: 100%;
+    border-left: 1px dashed rgb(150, 150, 150);
+}
+.loginFormInput{
+    width: 65%;
+    margin: auto;
+    position: relative;
+    top: 20%;
+    padding: 20px;
+    border: 1px solid;
+}
+.loginCardBody, .loginFormFooter{
+    overflow: hidden;
+}
+.loginHnText{
+    float: left;
+    font-size: small;
+    font-weight: 700;
+}
+.inputLoginInfo{
+    margin-bottom: 5px;
+}
+.loginContentLogoImg{
+    position: relative;
+    top: 35%;
+}
+.loiginFormLabel{
+    float: left;
+}
+.createAccountBtn{
+    float: right;
 }
