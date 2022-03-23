@@ -1,14 +1,12 @@
 import * as React from 'react';
-import "./Main.css";
-import Header from "../components/common/Header";
-import Footer from "../components/common/Footer";
-import SideBar from "../components/common/Sidebar";
+import "pages/Main.css";
+import Header from "components/common/Header";
+import Footer from "components/common/Footer";
+import SideBar from "components/common/Sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-
-import {BryntumTest} from "../bryntum/BryntumTest";
 
 export default function GanttChart() {
   return (
@@ -20,7 +18,6 @@ export default function GanttChart() {
             <SideBar></SideBar>
           </Col>
           <Col sm={11} >
-            <BryntumTest/>
           </Col>
         </Row>
       </Container>

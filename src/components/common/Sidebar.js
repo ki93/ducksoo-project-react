@@ -1,5 +1,5 @@
 import React from "react";
-import "./Sidebar.css";
+import "components/common/Sidebar.css";
 
 import {
     Link,

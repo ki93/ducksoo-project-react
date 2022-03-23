@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import useAuth from "../useAuth";
+import useAuth from "useAuth";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Image from "react-bootstrap/Image";
-import Ducksoo from "../image/ducksooLogo.png"
-import "./Login.css";
+import Ducksoo from "assets/ducksooLogo.png"
+import "pages/Login.css";
 import axios from "axios";
 
 function Login() {

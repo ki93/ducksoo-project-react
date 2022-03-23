@@ -1,8 +1,7 @@
-import "./App.css";
+import "App.css";
 // import Login from "./pages/Login"
 import React from 'react'
-import ReactDOM from 'react-dom'
-import Router from './Routes'
+import Router from 'Routes'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
