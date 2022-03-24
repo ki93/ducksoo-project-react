@@ -1,9 +1,9 @@
 import React from "react";
-import "./Header.css";
+import "components/common/Header.css";
 import {
   useNavigate,
 } from "react-router-dom";
-import useAuth from "../../useAuth";
+import useAuth from "useAuth";
 
 //사용할 요소에 대한 컴포넌트를 react-bootstrap에서 import합니다
 import Navbar from "react-bootstrap/Navbar";

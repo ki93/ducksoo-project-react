@@ -1,9 +1,9 @@
 import * as React from 'react';
-import "./Layout.css";
-import Header from "./Header";
-import Footer from "./Footer";
-import SideBar from "./Sidebar";
-import Router from '../../Routes'
+import "components/common/Layout.css";
+import Header from "components/common/Header";
+import Footer from "components/common/Footer";
+import SideBar from "components/common/Sidebar";
+import Router from 'Routes'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";

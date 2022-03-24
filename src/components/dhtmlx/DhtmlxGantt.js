@@ -1,8 +1,8 @@
 import React from "react";
-import "./dhtmlxstyle.css";
+import "components/dhtmlx/dhtmlxstyle.css";
 
 import { Gantt, DefaultTheme } from "@dhtmlx/trial-react-gantt";
-import { columns, scales, tasks, links, layout } from "./dhtmlxdata";
+import { columns, scales, tasks, links, layout } from "components/dhtmlx/dhtmlxdata";
 
 const noDrag = false; // if true - can't move and dnd tasks
 const noEdit = true; // if true - can't edit task

@@ -1,8 +1,8 @@
 import * as React from "react";
-import Login from "./pages/Login";
-import Main from "./pages/Main";
-import GanttChart1 from "./pages/GanttChart1";
-import GanttChart2 from "./pages/GanttChart2";
+import Login from "pages/Login";
+import Main from "pages/Main";
+import GanttChart1 from "pages/GanttChart1";
+import GanttChart2 from "pages/GanttChart2";
 import {
   Routes,
   Route,
