@@ -61,7 +61,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
+      <Grid container component="main" sx={{ height: "100vh" }} >
         <CssBaseline />
         <Grid
           item
@@ -95,6 +95,7 @@ export default function Login() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
