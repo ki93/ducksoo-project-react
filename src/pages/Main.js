@@ -19,6 +19,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SideBar from "../components/common/Sidebar";
 import Router from '../Routes';
 import Footer from '../components/common/Footer';
+import Logout from 'components/common/Logout'
 
 
 const drawerWidth = 240;
@@ -106,8 +107,12 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Ducksoo
+              Ducksoo Smart Factory
             </Typography>
+            {/* <IconButton color="inherit">
+                <LogoutIcon />
+            </IconButton> */}
+            <Logout></Logout>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
