@@ -1,21 +1,31 @@
-import React from "react";
-import "./Footer.css";
+import * as React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Copyright from "./Copyright";
 
-//사용할 요소에 대한 컴포넌트를 react-bootstrap에서 import합니다
-import Navbar from "react-bootstrap/Navbar";
-const Footer = () => {
-
-    return (
-        <div>
-  <Navbar bg="dark" variant="dark" fixed="bottom" >
-      <Navbar.Brand className="footerText">
-          <div className="footerText">
-          Copyright 2022. HN Inc all rights reserved.
-          </div>
-     </Navbar.Brand>
-  </Navbar>
-        </div>
-    );
-};
-
-export default Footer;
+export default function StickyFooter() {
+  return (
+    <Box
+      component="footer"
+      position="fixed"
+      bottom="0"
+      left="0"
+      minWidth="100%"
+      sx={{
+        py: 2,
+        px: 2,
+        mt: "auto",
+        backgroundColor: (theme) =>
+          theme.palette.mode === "light"
+            ? theme.palette.grey[300]
+            : theme.palette.grey[800],
+      }}
+    >
+      <Container maxWidth="100%">
+        <Copyright />
+      </Container>
+    </Box>
+  );
+}
