@@ -1,6 +1,14 @@
 import React from "react";
-import "components/common/Sidebar.css";
-
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ListSubheader from '@mui/material/ListSubheader';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PeopleIcon from '@mui/icons-material/People';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import LayersIcon from '@mui/icons-material/Layers';
+import AssignmentIcon from '@mui/icons-material/Assignment';
 import {
     Link,
   } from "react-router-dom";
@@ -9,20 +17,38 @@ import {
 const SideBar = () => {
   return (
     <div>
-      <ul className="sideMenu">
-        <li>
-          <Link to="/main" className="menuTitle">Main</Link>
-        </li>
-        {/* <li>
-          <Link to="/login" className="menuTitle">Login Page</Link>
-        </li> */}
-        <li>
-          <Link to="/chart1" className="menuTitle">Gantt1</Link>
-        </li>
-        <li>
-          <Link to="/chart2" className="menuTitle">Gantt2</Link>
-        </li>
-      </ul>
+      <ListItemButton>
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <Link to="/main">
+      <ListItemText primary="Dashboard"/>
+      </Link>
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Orders" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Customers" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Reports" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <LayersIcon />
+      </ListItemIcon>
+      <ListItemText primary="Integrations" />
+    </ListItemButton>
       
     </div>
   );
