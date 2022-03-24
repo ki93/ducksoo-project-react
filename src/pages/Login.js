@@ -1,64 +1,88 @@
-import * as React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import useAuth from "../useAuth";
+import { useRef, useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import LoginImg from "assets/loginImg3.png";
+import Copyright from "components/common/Copyright"
+import { useNavigate, useLocation } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import useAuth from "hooks/useAuth";
 import axios from "axios";
-import LoginImg from "../image/loginImg3.png";
-import Copyright from "../components/common/Copyright"
+import Link  from '@mui/material/Link';
 
-const theme = createTheme();
+const theme = createTheme({palette: {
+  mode: 'dark',
+},
+});
 
 export default function Login() {
-  let navigate = useNavigate();
-  let location = useLocation();
-  let auth = useAuth();
-  let from = location.state?.from?.pathname || "/main";
-  const handleLoginSubmit = (event) => {
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/main";
+
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState("");
+  const [password, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [user, password]);
+
+
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    let username = data.get("inputId");
 
-    auth.signin(username, () => {
-      // Send them back to the page they tried to visit when they were
-      // redirected to the login page. Use { replace: true } so we don't create
-      // another entry in the history stack for the login page.  This means that
-      // when they get to the protected page and click the back button, they
-      // won't end up back on the login page, which is also really nice for the
-      // user experience.
-      navigate(from, { replace: true });
-    });
-
-    console.log({
-      id: data.get("inputId"),
-      password: data.get("inputPw"),
-    });
-    axios
-      .get(
+    try {
+      const response = await axios.post(
         "api/login",
+        // JSON.stringify({ user, password }),
         {
-          id: data.get("inputId"),
-          pw: data.get("inputPw"),
+          id : user,
+          pw : password
         },
-        { withCredentials: true }
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
       )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("Err");
-      });
+      console.log(JSON.stringify(response?.data));
+      const accessToken = response?.data?.accessToken;
+      const roles = [jwt_decode(accessToken).role]; // response?.data?.roles;
+      console.log("roles ===> ", roles);
+      setAuth({ user, password, roles, accessToken });
+      setUser("");
+      setPwd("");
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.log(err);
+      if (!err?.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Missing Username or Password");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+      }
+      errRef.current.focus();
+    }
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -113,22 +137,34 @@ export default function Login() {
                 margin="normal"
                 required
                 fullWidth
-                id="inputId"
+                id="username"
+                ref={userRef}
                 label="Id"
-                name="inputId" //data get
-                autoComplete="inputId"
+                name="username"
+                onChange={(e) => setUser(e.target.value)}
+                value={user}
+                autoComplete="off"
                 autoFocus
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="inputPw"
+                name="password"
                 label="Password"
                 type="password"
-                id="inputPw"
-                autoComplete="current-password"
+                id="password"
+                onChange={(e) => setPwd(e.target.value)}
+                value={password}
+                autoComplete="off"
               />
+              <p
+                ref={errRef}
+                className={errMsg ? "errmsg" : "offscreen"}
+                aria-live="assertive"
+              >
+                {errMsg}
+              </p>
               <Button
                 type="submit"
                 fullWidth
@@ -149,4 +185,5 @@ export default function Login() {
       </Grid>
     </ThemeProvider>
   );
+
 }

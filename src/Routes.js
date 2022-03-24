@@ -9,7 +9,8 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import useAuth, { AuthProvider } from "./useAuth";
+import useAuth from "hooks/useAuth";
+import { AuthProvider } from './context/AuthProvider';
 
 export default function Router() {
   return (
