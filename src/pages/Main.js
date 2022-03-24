@@ -9,17 +9,16 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import SideBar from "../components/common/Sidebar";
-import Router from '../Routes';
 import Footer from '../components/common/Footer';
-
+import { useNavigate, Link } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "context/AuthProvider";
 
 const drawerWidth = 240;
 
@@ -67,9 +66,10 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme({palette: {
-  mode: 'dark',
-},
+const mdTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
 });
 
 function DashboardContent() {
@@ -79,7 +79,7 @@ function DashboardContent() {
   };
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex"}}>
+      <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
           <Toolbar
@@ -142,7 +142,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg:100%" height= '100vh' sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg:100%" height='100vh' sx={{ mt: 4, mb: 4 }}>
             <Grid container >
               <Grid item xs={12} md={12} lg={12}>
                 <Paper
@@ -158,7 +158,7 @@ function DashboardContent() {
               </Grid>
             </Grid>
           </Container>
-          <Footer/>
+          <Footer />
         </Box>
       </Box>
     </ThemeProvider>
@@ -166,5 +166,13 @@ function DashboardContent() {
 }
 
 export default function Main() {
+  const { setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const logout = async () => {
+    // if used in more components, this should be in context 
+    // axios to /logout endpoint 
+    setAuth({});
+    navigate('/login');
+  }
   return <DashboardContent />;
 }

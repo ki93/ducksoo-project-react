@@ -16,6 +16,7 @@ import jwt_decode from "jwt-decode";
 import useAuth from "hooks/useAuth";
 import axios from "axios";
 import Link  from '@mui/material/Link';
+import { useCookies } from 'react-cookie';
 
 const theme = createTheme({palette: {
   mode: 'dark',
@@ -27,7 +28,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/main";
+  const from = location.state?.from?.pathname || "/";
 
   const userRef = useRef();
   const errRef = useRef();
@@ -35,6 +36,8 @@ export default function Login() {
   const [user, setUser] = useState("");
   const [password, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
+
+  const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
 
   useEffect(() => {
     userRef.current.focus();
@@ -65,6 +68,9 @@ export default function Login() {
       const accessToken = response?.data?.accessToken;
       const roles = [jwt_decode(accessToken).role]; // response?.data?.roles;
       console.log("roles ===> ", roles);
+      setCookie('jwt',{ user, password, roles, accessToken },{path:'/'});
+      console.log("roles ===> ", roles);
+      console.log(cookies['jwt']);
       setAuth({ user, password, roles, accessToken });
       setUser("");
       setPwd("");
