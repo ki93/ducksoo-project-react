@@ -17,27 +17,23 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SideBar from "../components/common/Sidebar";
-import Router from "../Routes";
-import Footer from "../components/common/Footer";
-import LogoutIcon from "@mui/icons-material/Logout";
-import TestGrid from "pages/TestGrid"
+import Router from '../Routes';
+import Footer from '../components/common/Footer';
 
 
-const drawerWidth = 200;
+const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({ //menu closed
+})(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  // backgroundColor:'#326ba8', 
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(open && { //menu opened
+  ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    // backgroundColor:'#326ba8', 
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -45,13 +41,12 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { //menu sytle
+const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
     position: "relative",
     whiteSpace: "nowrap",
-    // backgroundColor:'#fafafa',
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
@@ -81,9 +76,9 @@ function DashboardContent() {
   };
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }}>
-        {/* <CssBaseline /> */}
-        <AppBar position="absolute" open={open} >
+      <Box sx={{ display: "flex"}}>
+        <CssBaseline />
+        <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -108,11 +103,8 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Ducksoo Smart Factory
+              Ducksoo
             </Typography>
-            <IconButton color="inherit">
-              <LogoutIcon />
-            </IconButton>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -122,7 +114,6 @@ function DashboardContent() {
               alignItems: "center",
               justifyContent: "flex-end",
               px: [1],
-              backgroundColor:'#326ba8', 
             }}
           >
             <IconButton onClick={toggleDrawer}>
@@ -148,8 +139,8 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg:100%" height="100vh" sx={{ mt: 4, mb: 4 }}>
-            <Grid container>
+          <Container maxWidth="lg:100%" height= '100vh' sx={{ mt: 4, mb: 4 }}>
+            <Grid container >
               <Grid item xs={12} md={12} lg={12}>
                 <Paper
                   sx={{
@@ -160,12 +151,11 @@ function DashboardContent() {
                 >
                   {/* router? */}
                   {/* <Router></Router> */}
-                  <TestGrid></TestGrid>
                 </Paper>
               </Grid>
             </Grid>
           </Container>
-          <Footer />
+          <Footer/>
         </Box>
       </Box>
     </ThemeProvider>
