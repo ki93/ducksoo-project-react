@@ -25,8 +25,8 @@ function Login() {
     console.log(inputId);
     console.log(inputPw);
     axios
-      .post(
-        "/login",
+      .get(
+        "api/login",
         {
           id: inputId,
           pw: inputPw,
@@ -81,8 +81,7 @@ function Login() {
                 {/* <p className="loginHnText">Hn Inc</p> */}
                 <img
                   src={Ducksoo}
-                  className="img-fluid"
-                  className="loginContentLogoImg"
+                  className="img-fluid loginContentLogoImg" 
                   alt="..."
                   style={{ maxWidth: "24rem" }}
                 />{" "}
@@ -123,7 +122,7 @@ function Login() {
               </div>
             </div>
           </Card.Body>
-          <Card.Footer className="text-muted" className="loginFormFooter">
+          <Card.Footer className="text-muted loginFormFooter">
             Copyright 2022. HN Inc All Rights Reserved.
           </Card.Footer>
         </Card>
