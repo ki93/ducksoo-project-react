@@ -19,6 +19,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SideBar from "../components/common/Sidebar";
 import Router from '../Routes';
 import Footer from '../components/common/Footer';
+import Logout from 'components/common/Logout'
+import DataGrid from 'pages/DataGrid';
 
 
 const drawerWidth = 240;
@@ -67,7 +69,10 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
+const mdTheme = createTheme({palette: {
+  mode: 'dark',
+},
+});
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -103,8 +108,12 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Ducksoo
+              Ducksoo Smart Factory
             </Typography>
+            {/* <IconButton color="inherit">
+                <LogoutIcon />
+            </IconButton> */}
+            <Logout></Logout>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -149,6 +158,7 @@ function DashboardContent() {
                     flexDirection: "column",
                   }}
                 >
+                  <DataGrid></DataGrid>
                   {/* router? */}
                   {/* <Router></Router> */}
                 </Paper>
