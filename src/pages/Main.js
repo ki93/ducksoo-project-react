@@ -20,6 +20,7 @@ import SideBar from "../components/common/Sidebar";
 import Router from '../Routes';
 import Footer from '../components/common/Footer';
 import Logout from 'components/common/Logout'
+import DataGrid from 'pages/DataGrid';
 
 
 const drawerWidth = 240;
@@ -157,6 +158,7 @@ function DashboardContent() {
                     flexDirection: "column",
                   }}
                 >
+                  <DataGrid></DataGrid>
                   {/* router? */}
                   {/* <Router></Router> */}
                 </Paper>
