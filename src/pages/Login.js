@@ -43,8 +43,8 @@ export default function Login() {
       password: data.get("inputPw"),
     });
     axios
-      .post(
-        "/login",
+      .get(
+        "api/login",
         {
           id: data.get("inputId"),
           pw: data.get("inputPw"),
@@ -129,7 +129,6 @@ export default function Login() {
                 id="inputPw"
                 autoComplete="current-password"
               />
-
               <Button
                 type="submit"
                 fullWidth

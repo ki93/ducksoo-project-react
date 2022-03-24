@@ -74,7 +74,6 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex"}}>
