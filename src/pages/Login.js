@@ -9,18 +9,21 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import LoginImg from "assets/loginImg3.png";
-import Copyright from "components/common/Copyright"
+import LoginImg from "assets/factory.jpg";
+import Ducksoo from "assets/ducksooLogo.png";
+import Copyright from "components/common/Copyright";
 import { useNavigate, useLocation } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import useAuth from "hooks/useAuth";
 import axios from "axios";
 import Link  from '@mui/material/Link';
 import { useCookies } from 'react-cookie';
+import { positions } from '@mui/system';
 
-const theme = createTheme({palette: {
-  mode: 'dark',
-},
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+  },
 });
 
 export default function Login() {
@@ -47,7 +50,6 @@ export default function Login() {
     setErrMsg("");
   }, [user, password]);
 
-
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
@@ -56,14 +58,14 @@ export default function Login() {
         "api/login",
         // JSON.stringify({ user, password }),
         {
-          id : user,
-          pw : password
+          id: user,
+          pw: password,
         },
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
-      )
+      );
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
       const roles = [jwt_decode(accessToken).role]; // response?.data?.roles;
@@ -105,18 +107,10 @@ export default function Login() {
               t.palette.mode === "light"
                 ? t.palette.grey[100]
                 : t.palette.grey[900],
-            backgroundSize: "45%",
+            backgroundSize: "100%",
             backgroundPosition: "center",
           }}
-        >
-          {/* <img
-            src={Ducksoo}
-            className="img-fluid"
-            className="loginContentLogoImg"
-            alt="..."
-            style={{ maxWidth: "24rem" }}
-          />{" "} */}
-        </Grid>
+        ></Grid>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
@@ -125,11 +119,15 @@ export default function Login() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              position: "relative",
+              top: "15%"
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <img
+              src={Ducksoo}
+              alt="..."
+              style={{ maxWidth: "100%" }}
+            />{" "}
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
@@ -179,11 +177,11 @@ export default function Login() {
               >
                 Sign In
               </Button>
-              <Grid item>
+              {/* <Grid item>
                 <Link href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
+              </Grid> */}
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
@@ -191,5 +189,4 @@ export default function Login() {
       </Grid>
     </ThemeProvider>
   );
-
 }

@@ -19,6 +19,9 @@ import Footer from '../components/common/Footer';
 import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "context/AuthProvider";
+import Logout from 'components/common/Logout'
+import DataGrid from 'pages/DataGrid';
+
 
 const drawerWidth = 240;
 
@@ -106,8 +109,12 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Ducksoo
+              Ducksoo Smart Factory
             </Typography>
+            {/* <IconButton color="inherit">
+                <LogoutIcon />
+            </IconButton> */}
+            <Logout></Logout>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -152,6 +159,7 @@ function DashboardContent() {
                     flexDirection: "column",
                   }}
                 >
+                  <DataGrid></DataGrid>
                   {/* router? */}
                   {/* <Router></Router> */}
                 </Paper>
