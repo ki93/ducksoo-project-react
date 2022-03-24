@@ -29,7 +29,7 @@ const rows = [
   {
     id: 5,
     username: 'HONG',
-    age: 30,
+    age: 8,
     height: 180
   },
 ];
