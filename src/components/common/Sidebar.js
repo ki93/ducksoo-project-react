@@ -15,7 +15,7 @@ const SideBar = () => {
       <ListItemIcon>
         <ManageAccountsIcon />
       </ListItemIcon>
-      <Link to="/main" style={{textDecoration:"none", color:"white"}} >
+      <Link to="/main/admin" style={{textDecoration:"none", color:"white"}} >
       <ListItemText primary="Admin"/>
       </Link>
     </ListItemButton>
@@ -23,13 +23,17 @@ const SideBar = () => {
       <ListItemIcon>
         <AccountCircleIcon />
       </ListItemIcon>
+      <Link to="/main/user" style={{textDecoration:"none", color:"white"}} >
       <ListItemText primary="User" />
+      </Link>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
         <GridOnIcon />
       </ListItemIcon>
+      <Link to="/main/datagrid" style={{textDecoration:"none", color:"white"}} >
       <ListItemText primary="Grid" />
+      </Link>
     </ListItemButton>
     </div>
   );
