@@ -9,6 +9,7 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
@@ -19,8 +20,10 @@ import Footer from '../components/common/Footer';
 import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "context/AuthProvider";
-import Logout from 'components/common/Logout'
-import DataGrid from 'pages/DataGrid';
+import { Outlet } from "react-router-dom";
+import axios from "axios";
+import useAuth from 'hooks/useAuth';
+import { useCookies } from 'react-cookie';
 
 
 const drawerWidth = 240;
@@ -75,7 +78,26 @@ const mdTheme = createTheme({
   },
 });
 
-function DashboardContent() {
+export default function Main() {
+  const { setAuth } = useContext(AuthContext);
+  const {auth} = useAuth();
+  const [cookies, removeCookie] = useCookies(['jwt']);
+  console.log("init main cookies :"+cookies);
+
+  const navigate = useNavigate();
+  const logout = async () => {
+    try {
+      const response = await axios.get(
+        "api/logout/?id="+auth.user,
+      );
+      console.log(response);
+      removeCookie('jwt');
+      setAuth({});
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
+    }
+  }
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -111,10 +133,9 @@ function DashboardContent() {
             >
               Ducksoo Smart Factory
             </Typography>
-            {/* <IconButton color="inherit">
+            <IconButton color="inherit" onClick={logout}>
                 <LogoutIcon />
-            </IconButton> */}
-            <Logout></Logout>
+            </IconButton> 
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -159,9 +180,7 @@ function DashboardContent() {
                     flexDirection: "column",
                   }}
                 >
-                  <DataGrid></DataGrid>
-                  {/* router? */}
-                  {/* <Router></Router> */}
+                <Outlet/>
                 </Paper>
               </Grid>
             </Grid>
@@ -173,14 +192,4 @@ function DashboardContent() {
   );
 }
 
-export default function Main() {
-  const { setAuth } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const logout = async () => {
-    // if used in more components, this should be in context 
-    // axios to /logout endpoint 
-    setAuth({});
-    navigate('/login');
-  }
-  return <DashboardContent />;
-}
+

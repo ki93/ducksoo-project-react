@@ -19,6 +19,7 @@ import axios from "axios";
 import Link  from '@mui/material/Link';
 import { useCookies } from 'react-cookie';
 import { positions } from '@mui/system';
+import { setCookie } from "context/Cookie";
 
 const theme = createTheme({
   palette: {
@@ -31,7 +32,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/main";
 
   const userRef = useRef();
   const errRef = useRef();
@@ -40,7 +41,7 @@ export default function Login() {
   const [password, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
-  const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+  const [cookies, setCookie] = useCookies(['jwt']);
 
   useEffect(() => {
     userRef.current.focus();
@@ -69,7 +70,6 @@ export default function Login() {
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
       const roles = [jwt_decode(accessToken).role]; // response?.data?.roles;
-      console.log("roles ===> ", roles);
       setCookie('jwt',{ user, password, roles, accessToken },{path:'/'});
       console.log("roles ===> ", roles);
       console.log(cookies['jwt']);

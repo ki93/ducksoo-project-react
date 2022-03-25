@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom"
 import { DataGrid } from '@mui/x-data-grid';
 
 const rows = [
@@ -35,6 +36,9 @@ const rows = [
 ];
 
 export default function HeaderColumnsGrid() {
+  const navigate = useNavigate();
+
+  const goBack = () => navigate(-1);
   return (
     <div style={{ height:400, width: '100%' }}>
       <DataGrid
@@ -45,6 +49,7 @@ export default function HeaderColumnsGrid() {
         ]}
         rows={rows}
       />
+      <button onClick={goBack}>Go Back</button>
     </div>
   );
 }
