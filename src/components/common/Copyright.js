@@ -12,11 +12,7 @@ function Copyright(props) {
       >
         {"Copyright "}
         {new Date().getFullYear()}
-        {". "}
-        <Link color="inherit" href="http://www.hncorp.world/main/main.do">
-          HN Inc
-        </Link>{" "}
-        {" All Rights Reserved."}
+        {". HN Inc & Ducksoo All Rights Reserved."}
       </Typography>
     );
   }

@@ -24,7 +24,7 @@ const Unauthorized = () => {
           display: "flex",
           flexWrap: "wrap",
           "& > :not(style)": {
-            m: 1,
+            m: 0,
             width: '100%',
             height: '100vh',
           },
