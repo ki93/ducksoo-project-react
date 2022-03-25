@@ -96,6 +96,8 @@ export default function Login() {
       <Grid container component="main" sx={{ height: "100vh" }}>
         <CssBaseline />
         <Grid
+
+        adm
           item
           xs={false}
           sm={4}
@@ -128,9 +130,7 @@ export default function Login() {
               alt="..."
               style={{ maxWidth: "100%" }}
             />{" "}
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
+
             <Box
               component="form"
               noValidate
