@@ -133,6 +133,16 @@ export default function Main() {
             >
               Ducksoo Smart Factory
             </Typography>
+            {/* 로그인한 사용자 아이디 표시 */}
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              sx={{ flexDirection: 'row-reverse' }}
+            >
+              Welcome, {auth.user} !
+            </Typography>
             <IconButton color="inherit" onClick={logout}>
                 <LogoutIcon />
             </IconButton> 

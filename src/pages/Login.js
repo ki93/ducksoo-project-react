@@ -162,13 +162,15 @@ export default function Login() {
                 value={password}
                 autoComplete="off"
               />
-              <p
+              <Typography
                 ref={errRef}
                 className={errMsg ? "errmsg" : "offscreen"}
                 aria-live="assertive"
+                variant="overline"
+                color="#e42828"
               >
                 {errMsg}
-              </p>
+              </Typography>
               <Button
                 type="submit"
                 fullWidth
